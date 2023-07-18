@@ -1,0 +1,197 @@
+syntax = "proto3";
+
+package chat;
+
+import "chat.common.proto";
+// import "user.common.proto";
+
+// Requests and Responses
+
+message Empty {}
+
+message CreateChatRequest {
+  int32 chatTypeId = 1;
+  string name = 2;
+  string description = 3;
+  repeated int32 users = 4;
+}
+
+// message CreateChatResponse {
+//   int32 id = 1;
+//   string name = 2;
+//   string description = 3;
+//   common.ChatType chatType = 4;
+//   repeated common.User users = 5;
+//   string createdAt = 6;
+//   string updatedAt = 7;
+// }
+
+message GetChatsRequest {
+  int32 limit = 1;
+  int32 offset = 2;
+  repeated int32 chats = 3;
+  int32 userId = 4;
+}
+
+message GetChatsResponse {
+  repeated common.Chat result = 1;
+  int32 total = 2;
+  int32 limit = 3;
+  int32 offset = 4;
+}
+
+message GetChatRequest {
+  int32 id = 1;
+}
+
+// message GetChatResponse {
+//   int32 id = 1;
+//   string name = 2;
+//   string description = 3;
+//   common.ChatType chatType = 4;
+//   string createdAt = 5;
+//   string updatedAt = 6;
+// }
+
+message UpdateChatRequest {
+  int32 id = 1;
+  string name = 2;
+  string description = 3;
+  int32 chatTypeId = 4;
+  string createdAt = 5;
+  string updatedAt = 6;
+}
+
+// message UpdateChatResponse {
+//   int32 id = 1;
+//   string name = 2;
+//   string description = 3;
+//   common.ChatType chatType = 4;
+//   string createdAt = 5;
+//   string updatedAt = 6;
+// }
+
+message DeleteChatRequest {
+  int32 id = 1;
+}
+
+message DeleteChatResponse {}
+
+// ChatType
+
+message CreateChatTypeRequest {
+  string name = 1;
+}
+
+// message CreateChatTypeResponse {
+//   int32 id = 1;
+//   string name = 2;
+//   string createdAt = 4;
+//   string updatedAt = 5;
+// }
+
+message GetChatTypesRequest {
+  int32 limit = 1;
+  int32 offset = 2;
+}
+
+message GetChatTypesResponse {
+  repeated common.ChatType result = 1;
+  int32 total = 2;
+  int32 limit = 3;
+  int32 offset = 4;
+}
+
+message GetChatTypeRequest {
+  int32 id = 1;
+}
+
+// message GetChatTypeResponse {
+//   int32 id = 1;
+//   string name = 2;
+//   string createdAt = 4;
+//   string updatedAt = 5;
+// }
+
+message UpdateChatTypeRequest {
+  int32 id = 1;
+  string name = 2;
+}
+
+// message UpdateChatTypeResponse {
+//   int32 id = 1;
+//   string name = 2;
+//   string createdAt = 4;
+//   string updatedAt = 5;
+// }
+
+message DeleteChatTypeRequest {
+  int32 id = 1;
+}
+
+message DeleteChatTypeResponse {}
+
+message CreateMessageRequest {
+  int32 chatId = 1;
+  int32 userId = 2;
+  string text = 3;
+}
+
+message GetMessagesRequest {
+  int32 limit = 1;
+  int32 offset = 2;
+  repeated int32 messages = 3;
+  int32 chatId = 4;
+}
+
+message GetMessagesResponse {
+  repeated common.Message result = 1;
+  int32 total = 2;
+  int32 limit = 3;
+  int32 offset = 4;
+}
+
+message GetMessageRequest {
+  int32 id = 1;
+}
+
+message UpdateMessageRequest {
+  int32 id = 1;
+  string text = 2;
+}
+
+message DeleteMessageRequest {
+  int32 id = 1;
+}
+
+
+
+
+// Service
+
+service ChatService {
+
+  // Chat
+
+  rpc CreateChat(CreateChatRequest) returns (common.Chat);
+  rpc GetChats(GetChatsRequest) returns (GetChatsResponse);
+  rpc GetChat(GetChatRequest) returns (common.Chat);
+  rpc UpdateChat(UpdateChatRequest) returns (common.Chat);
+  rpc DeleteChat(DeleteChatRequest) returns (Empty);
+
+  // ChatType
+
+  rpc CreateChatType(CreateChatTypeRequest) returns (common.ChatType);
+  rpc GetChatTypes(GetChatTypesRequest) returns (GetChatTypesResponse);
+  rpc GetChatType(GetChatTypeRequest) returns (common.ChatType);
+  rpc UpdateChatType(UpdateChatTypeRequest) returns (common.ChatType);
+  rpc DeleteChatType(DeleteChatTypeRequest) returns (Empty);
+
+  // Message
+
+  rpc CreateMessage(CreateMessageRequest) returns (common.Message);
+  rpc GetMessages(GetMessagesRequest) returns (GetMessagesResponse);
+  rpc GetMessage(GetMessageRequest) returns (common.Message);
+  rpc UpdateMessage(UpdateMessageRequest) returns (common.Message);
+  rpc DeleteMessage(DeleteMessageRequest) returns (Empty);
+}

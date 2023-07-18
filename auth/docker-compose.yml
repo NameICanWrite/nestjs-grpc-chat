@@ -1,0 +1,20 @@
+version: '3.9'
+services:
+  auth:
+    container_name: auth
+    build:
+      dockerfile: Dockerfile
+      context: .
+      target: development
+    env_file:
+      - .env.development
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    command: yarn start:dev
+    ports:
+      - "50052:50052"
+volumes:
+  auth:

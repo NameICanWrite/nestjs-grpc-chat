@@ -1,0 +1,150 @@
+syntax = "proto3";
+
+package template;
+
+import "template.common.proto";
+
+// Requests and Responses
+
+// Template
+
+message CreateTemplateRequest {
+  int32 templateTypeId = 1;
+  string name = 2;
+  string description = 3;
+}
+
+message CreateTemplateResponse {
+  int32 id = 1;
+  string name = 2;
+  string description = 3;
+  common.TemplateType templateType = 4;
+  string createdAt = 5;
+  string updatedAt = 6;
+}
+
+message GetTemplatesRequest {
+  int32 limit = 1;
+  int32 offset = 2;
+  repeated int32 templates = 3;
+}
+
+message GetTemplatesResponse {
+  repeated common.Template result = 1;
+  int32 total = 2;
+  int32 limit = 3;
+  int32 offset = 4;
+}
+
+message GetTemplateRequest {
+  int32 id = 1;
+}
+
+message GetTemplateResponse {
+  int32 id = 1;
+  string name = 2;
+  string description = 3;
+  common.TemplateType templateType = 4;
+  string createdAt = 5;
+  string updatedAt = 6;
+}
+
+message UpdateTemplateRequest {
+  int32 id = 1;
+  string name = 2;
+  string description = 3;
+  int32 templateTypeId = 4;
+  string createdAt = 5;
+  string updatedAt = 6;
+}
+
+message UpdateTemplateResponse {
+  int32 id = 1;
+  string name = 2;
+  string description = 3;
+  common.TemplateType templateType = 4;
+  string createdAt = 5;
+  string updatedAt = 6;
+}
+
+message DeleteTemplateRequest {
+  int32 id = 1;
+}
+
+message DeleteTemplateResponse {}
+
+// TemplateType
+
+message CreateTemplateTypeRequest {
+  string name = 1;
+}
+
+message CreateTemplateTypeResponse {
+  int32 id = 1;
+  string name = 2;
+  string createdAt = 4;
+  string updatedAt = 5;
+}
+
+message GetTemplateTypesRequest {
+  int32 limit = 1;
+  int32 offset = 2;
+}
+
+message GetTemplateTypesResponse {
+  repeated common.TemplateType result = 1;
+  int32 total = 2;
+  int32 limit = 3;
+  int32 offset = 4;
+}
+
+message GetTemplateTypeRequest {
+  int32 id = 1;
+}
+
+message GetTemplateTypeResponse {
+  int32 id = 1;
+  string name = 2;
+  string createdAt = 4;
+  string updatedAt = 5;
+}
+
+message UpdateTemplateTypeRequest {
+  int32 id = 1;
+  string name = 2;
+}
+
+message UpdateTemplateTypeResponse {
+  int32 id = 1;
+  string name = 2;
+  string createdAt = 4;
+  string updatedAt = 5;
+}
+
+message DeleteTemplateTypeRequest {
+  int32 id = 1;
+}
+
+message DeleteTemplateTypeResponse {}
+
+
+// Service
+
+service TemplateService {
+
+  // Template
+
+  rpc CreateTemplate(CreateTemplateRequest) returns (CreateTemplateResponse);
+  rpc GetTemplates(GetTemplatesRequest) returns (GetTemplatesResponse);
+  rpc GetTemplate(GetTemplateRequest) returns (GetTemplateResponse);
+  rpc UpdateTemplate(UpdateTemplateRequest) returns (UpdateTemplateResponse);
+  rpc DeleteTemplate(DeleteTemplateRequest) returns (DeleteTemplateResponse);
+
+  // TemplateType
+
+  rpc CreateTemplateType(CreateTemplateTypeRequest) returns (CreateTemplateTypeResponse);
+  rpc GetTemplateTypes(GetTemplateTypesRequest) returns (GetTemplateTypesResponse);
+  rpc GetTemplateType(GetTemplateTypeRequest) returns (GetTemplateTypeResponse);
+  rpc UpdateTemplateType(UpdateTemplateTypeRequest) returns (UpdateTemplateTypeResponse);
+  rpc DeleteTemplateType(DeleteTemplateTypeRequest) returns (DeleteTemplateTypeResponse);
+}

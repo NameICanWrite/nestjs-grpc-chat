@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package common;
+
+
+
+enum OrderDirection {
+  ASC = 0;
+  DESC = 1;
+}
+
+// User
+
+message User {
+  int32 id = 1;
+  string name = 2;
+  string description = 3;
+  UserType userType = 4;
+  int32 avatarFileId = 5;
+  string createdAt = 6;
+  string updatedAt = 7;
+}
+
+// UserType
+
+message UserType {
+  int32 id = 1;
+  string name = 2;
+  string createdAt = 3;
+  string updatedAt = 4;
+}
+
+
+
+

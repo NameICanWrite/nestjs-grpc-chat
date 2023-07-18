@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package common;
+
+
+
+
+// Chat
+
+message Chat {
+  int32 id = 1;
+  string name = 2;
+  string description = 3;
+  ChatType chatType = 4;
+  repeated int32 users = 5;
+  repeated Message messages = 6;
+  string createdAt = 7;
+  string updatedAt = 8;
+}
+
+// ChatType
+
+message ChatType {
+  int32 id = 1;
+  string name = 2;
+  string createdAt = 3;
+  string updatedAt = 4;
+}
+
+message Message {
+  int32 id = 1;
+  string text = 2;
+  ChatId chat = 3;
+  int32 userId = 4;
+  string createdAt = 5;
+  string updatedAt = 6; 
+}
+
+message ChatId {
+  int32 id = 1;
+}
+
+
+
+

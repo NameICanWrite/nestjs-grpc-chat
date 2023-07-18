@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package common;
+
+
+
+enum OrderDirection {
+  ASC = 0;
+  DESC = 1;
+}
+
+// Template
+
+message Template {
+  int32 id = 1;
+  string name = 2;
+  string description = 3;
+  TemplateType templateType = 4;
+  string createdAt = 5;
+  string updatedAt = 6;
+}
+
+// TemplateType
+
+message TemplateType {
+  int32 id = 1;
+  string name = 2;
+  string createdAt = 3;
+  string updatedAt = 4;
+}
+
+
+
+

@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+
+package auth;
+
+import "user.proto";
+
+service Authorization {
+  rpc SignIn(SignInRequest) returns (AuthorizationToken) {}
+  rpc SignUp(user.CreateUserRequest) returns (AuthorizationToken) {}
+  rpc VerifyToken(AuthorizationToken) returns (VerifyTokenResponse) {}
+}
+
+
+message Stub {}
+
+
+
+
+
+message AuthorizationToken {
+  string token = 1;
+}
+
+message VerifyTokenResponse {
+  bool isValid = 1;
+}
+
+message SignInRequest {
+  string login = 1;
+  string password = 2;
+}

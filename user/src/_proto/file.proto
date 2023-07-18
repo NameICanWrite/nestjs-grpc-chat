@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package file;
+
+
+// Requests and Responses
+
+// File
+
+
+message FileInfo {
+  optional int32 id = 1;
+  optional string firebasePath = 3;
+  optional string firebaseUrl = 4;
+  optional string fileName = 5;
+  optional string mimetype = 6;
+  optional string createdAt = 7;
+  optional string deletedAt = 8;
+}
+
+message FileChunk {
+  bytes data = 1;
+  optional FileInfo info = 2;
+}
+
+
+
+message GetFilesRequest {
+  int32 limit = 1;
+  int32 offset = 2;
+  optional string firebasePath = 4;
+}
+
+message Empty {}
+
+message FileId {
+  int32 id = 1;
+}
+
+
+service FileService {
+
+  // File
+
+  rpc CreateAvatarFile(stream FileChunk) returns (FileInfo);
+  rpc GetFileInfoById(FileId) returns (FileInfo);
+  // rpc UpdateFile(FileChunk) returns (FileInfo);
+  // rpc GetFiles(GetFilesRequest) returns (FileChunk);
+  // rpc GetFile(FileInfo) returns (stream FileChunk);
+  // rpc DeleteFile(FileInfo) returns (Empty);
+}

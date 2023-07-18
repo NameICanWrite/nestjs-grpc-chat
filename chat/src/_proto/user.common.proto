@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package common;
+
+
+
+
+
+// User
+
+message User {
+  int32 id = 1;
+  string name = 2;
+  string description = 3;
+  UserType userType = 4;
+  string createdAt = 5;
+  string updatedAt = 6;
+}
+
+// UserType
+
+message UserType {
+  int32 id = 1;
+  string name = 2;
+  string createdAt = 3;
+  string updatedAt = 4;
+}
+
+
+
+
